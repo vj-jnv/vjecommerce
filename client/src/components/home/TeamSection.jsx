@@ -16,7 +16,7 @@ const teamMembers = [
   },
 
   {
-    name: "Deepti Rajauriya",
+    name: "Shivam kumar",
     role: "Product Manager ",
     image: "/team/member-4.png",
   },
