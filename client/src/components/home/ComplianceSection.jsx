@@ -5,22 +5,26 @@ import {
   ReceiptText,
   ShieldCheck,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const complianceServices = [
   {
     title: "GST Filing",
     description: "Support for managing your GST filing requirements.",
     icon: ReceiptText,
+    slug: "gst-filing",
   },
   {
     title: "ITR Filing",
     description: "Assistance with your income tax return filing needs.",
     icon: FileCheck2,
+    slug: "itr-filing",
   },
   {
     title: "Compliance Support",
     description: "Stay organized and on top of important compliance tasks.",
     icon: ShieldCheck,
+    slug: "gst-filing",
   },
 ];
 
@@ -56,22 +60,23 @@ function ComplianceSection() {
                   const Icon = service.icon;
 
                   return (
-                    <div
+                    <Link
                       key={service.title}
-                      className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-background)] p-4"
+                      to={`/services/${service.slug}`}
+                      className="group block rounded-2xl border border-[var(--color-border)] bg-[var(--color-background)] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-primary)]/40 hover:shadow-lg"
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] transition-transform group-hover:scale-110">
                         <Icon size={20} />
                       </div>
 
-                      <h3 className="mt-4 text-sm font-bold text-[var(--color-foreground)]">
+                      <h3 className="mt-4 text-sm font-bold text-[var(--color-foreground)] transition-colors group-hover:text-[var(--color-primary)]">
                         {service.title}
                       </h3>
 
                       <p className="mt-1 text-xs leading-5 text-[var(--color-muted)]">
                         {service.description}
                       </p>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>
@@ -112,7 +117,10 @@ function ComplianceSection() {
                 </div>
 
                 <div className="mt-7 space-y-3">
-                  <div className="flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+                  <Link
+                    to="/services/gst-filing"
+                    className="flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-all hover:border-[var(--color-primary)]/40 hover:shadow-md"
+                  >
                     <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                       <ReceiptText size={18} />
                     </div>
@@ -131,9 +139,12 @@ function ComplianceSection() {
                       size={18}
                       className="ml-auto text-[var(--color-primary)]"
                     />
-                  </div>
+                  </Link>
 
-                  <div className="flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+                  <Link
+                    to="/services/itr-filing"
+                    className="flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-all hover:border-[var(--color-primary)]/40 hover:shadow-md"
+                  >
                     <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                       <FileCheck2 size={18} />
                     </div>
@@ -152,7 +163,7 @@ function ComplianceSection() {
                       size={18}
                       className="ml-auto text-[var(--color-primary)]"
                     />
-                  </div>
+                  </Link>
                 </div>
 
                 <div className="mt-6 rounded-xl bg-[var(--color-primary)]/10 px-4 py-3 text-center">

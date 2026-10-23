@@ -1,28 +1,36 @@
 import { Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "../common/ThemeToggle";
 
 const navLinks = [
   { name: "Home", href: "#home" },
-  { name: "Services", href: "#services" },
   { name: "Why Us", href: "#why-us" },
+  { name: "Services", href: "#services" },
   { name: "Team", href: "#team" },
   { name: "Contact", href: "#contact" },
+  { name: "Testimonials", href: "#testimonials" },
 ];
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const handleLinkClick = () => {
     setIsOpen(false);
+  };
+
+  const getHref = (hash) => {
+    return isHome ? hash : `/${hash}`;
   };
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-background)]/95 backdrop-blur-md">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
         {/* Logo */}
-        <a
-          href="#home"
+        <Link
+          to="/"
           onClick={handleLinkClick}
           className="flex items-center gap-2"
         >
@@ -33,14 +41,14 @@ function Navbar() {
               ECOMMERCE
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={link.href}
+              href={getHref(link.href)}
               className="text-sm select-none font-medium text-[var(--color-foreground)] transition-colors hover:text-[var(--color-primary)]"
             >
               {link.name}
@@ -77,7 +85,7 @@ function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={getHref(link.href)}
                 onClick={handleLinkClick}
                 className="border-b border-[var(--color-border)] py-4 text-sm font-medium text-[var(--color-foreground)] transition-colors hover:text-[var(--color-primary)]"
               >

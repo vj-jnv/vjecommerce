@@ -2,8 +2,16 @@ import {
     MapPin,
     Phone,
 } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 function Footer() {
+    const location = useLocation();
+    const isHome = location.pathname === "/";
+
+    const getHref = (hash) => {
+        return isHome ? hash : `/${hash}`;
+    };
+
     return (
         <footer className="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
             <div className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
@@ -11,8 +19,8 @@ function Footer() {
 
                     {/* Brand */}
                     <div>
-                        <a
-                            href="#home"
+                        <Link
+                            to="/"
                             className="inline-flex items-center text-2xl font-extrabold tracking-tight"
                         >
                             <span className="text-[var(--color-foreground)]">
@@ -26,7 +34,7 @@ function Footer() {
                             <span className="ml-1 text-[var(--color-foreground)]">
                                 ECOMMERCE
                             </span>
-                        </a>
+                        </Link>
 
                         <p className="mt-4 max-w-sm text-sm leading-6 text-[var(--color-muted)]">
                             Your trusted e-commerce growth partner for marketplace
@@ -46,38 +54,45 @@ function Footer() {
 
                         <div className="mt-4 space-y-3">
                             <a
-                                href="#home"
+                                href={getHref("#home")}
                                 className="block text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)]"
                             >
                                 Home
                             </a>
 
                             <a
-                                href="#services"
-                                className="block text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)]"
-                            >
-                                Services
-                            </a>
-
-                            <a
-                                href="#why-us"
+                                href={getHref("#why-us")}
                                 className="block text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)]"
                             >
                                 Why Us
                             </a>
 
                             <a
-                                href="#team"
+                                href={getHref("#services")}
+                                className="block text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)]"
+                            >
+                                Services
+                            </a>
+
+                            <a
+                                href={getHref("#team")}
                                 className="block text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)]"
                             >
                                 Team
                             </a>
 
                             <a
-                                href="#contact"
+                                href={getHref("#contact")}
                                 className="block text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)]"
                             >
                                 Contact
+                            </a>
+
+                            <a
+                                href={getHref("#testimonials")}
+                                className="block text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)]"
+                            >
+                                Testimonials
                             </a>
                         </div>
                     </div>

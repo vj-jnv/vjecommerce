@@ -1,54 +1,58 @@
 import {
   BarChart3,
-  BookOpenCheck,
+  FileCheck2,
   Megaphone,
   Package,
-  RotateCcw,
+  ReceiptText,
   ShoppingBag,
   Store,
-  TrendingUp,
 } from "lucide-react";
 
 import ServiceCard from "./ServiceCard";
 
 const services = [
   {
+    slug: "amazon-account-management",
     title: "Amazon Account Management",
     description:
       "Professional management of your Amazon marketplace operations, helping you stay organized and focused on growth.",
     icon: ShoppingBag,
   },
   {
+    slug: "flipkart-account-management",
     title: "Flipkart Account Management",
     description:
       "Manage your Flipkart seller operations, product presence and marketplace activities with expert support.",
     icon: Store,
   },
   {
+    slug: "meesho-account-management",
     title: "Meesho Account Management",
     description:
       "Build and manage your Meesho presence with streamlined operations and growth-focused marketplace support.",
     icon: Package,
   },
   {
-    title: "Listing & Catalog Management",
-    description:
-      "Create, optimize and maintain product listings and catalogs for a better customer experience and marketplace visibility.",
-    icon: BookOpenCheck,
-  },
-  {
+    slug: "advertisement-management",
     title: "Advertisement Management",
     description:
       "Manage marketplace advertising campaigns with a focus on visibility, performance and sustainable business growth.",
     icon: Megaphone,
   },
   {
-    title: "Claims Management",
+    slug: "gst-filing",
+    title: "GST Filing",
     description:
-      "Get assistance with marketplace claims and operational issues so you can spend more time growing your business.",
-    icon: RotateCcw,
+      "Support for managing your GST filing requirements.",
+    icon: ReceiptText,
   },
-
+  {
+    slug: "itr-filing",
+    title: "ITR Filing",
+    description:
+      "Assistance with your income tax return filing needs.",
+    icon: FileCheck2,
+  },
 ];
 
 function Services() {
@@ -70,15 +74,17 @@ function Services() {
 
           <p className="mt-4 text-base leading-7 text-[var(--color-muted)]">
             One trusted partner for managing your marketplace operations,
-            improving your presence and growing your e-commerce business.
+            improving your presence and growing your e-commerce business. Click
+            any service below to read detailed guides and operational workflows.
           </p>
         </div>
 
-        {/* Service grid */}
+        {/* Service grid: 6 items in 2 rows of 3 */}
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <ServiceCard
-              key={service.title}
+              key={service.slug}
+              slug={service.slug}
               title={service.title}
               description={service.description}
               icon={service.icon}
